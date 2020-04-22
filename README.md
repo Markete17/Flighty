@@ -1,6 +1,6 @@
-### Flighty
+# Flighty
 
-# Practica 2 para Sistemas Distribuidos 
+## Practica 2 para Sistemas Distribuidos 
 
 Hecho por:
 <ul>
