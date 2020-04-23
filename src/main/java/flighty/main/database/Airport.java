@@ -1,23 +1,25 @@
 package flighty.main.database;
 
-import java.util.List;
-
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
+@Entity
 public class Airport {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
 	
-	private String code; //4 words
-	private String name;
+	private String code; // Airport code consisting of 4 capital letters
+	private String name; // Name of the city where the city is located and if there are several airports the name of the airport
 	
-	@OneToMany(mappedBy = "airport")
-	private List<Flight> flights;
+	public Airport(String code, String name) {
+		super();
+		this.code = code;
+		this.name = name;
+	}
 	
 	public String getCode() {
 		return code;
@@ -32,8 +34,4 @@ public class Airport {
 		this.name = name;
 	}
 	
-	public Airport(String code, String name) {
-		this.code = code;
-		this.name = name;
-	}
 }

@@ -1,80 +1,70 @@
 package flighty.main.database;
 
 import java.sql.Date;
-import java.text.SimpleDateFormat;
+import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+@Entity
 public class Flight {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
-	
-	private String code; // par de letras de la compañia aerea + 4 digitos
-	private Airport origin;
-	private Airport dest;
-	private Date date;
-	private int hour;
-	private int minutes;
-	private int flightTime;
-	private int price;
-	private boolean complete; //ida y vuelta
-	
-	@OneToOne
-	private Flight flight;
-	
+
+	private String code; // Code of the flight: code of the company + 4 digits
+	private String origin; // Origin airport
+	private String dest; // Destination airport
+	private Date date; // Flight departure date
+	private int hour; // Flight departure time (hour)
+	private int minutes; // Flight departure time (minutes)
+	private int flightTime; // Duration of the flight
+	private int price; // Cost of the flight
+
 	@OneToOne
 	private Company company;
-	
-	public Flight(String code,Airport origin,Airport dest, Date date, int hour, int minutes, int flightTime, int price,boolean complete) {
+
+	public Flight(String code, Company company, String origin, String dest, Date date, int hour, int minutes, int flightTime, int price) {
 		super();
 		this.code = code;
-		this.origin=origin;
-		this.dest=dest;
+		this.company = company;
+		this.origin = origin;
+		this.dest = dest;
 		this.date = date;
-		this.complete = complete;
 		this.hour = hour;
 		this.minutes = minutes;
 		this.flightTime = flightTime;
 		this.price = price;
 	}
+
+	public String getOrigin() {
+		return origin;
+	}
 	
-	public boolean isComplete() {
-		return complete;
+	public void setOrigin(String origin) {
+		this.origin = origin;
 	}
-
-	public void setComplete(boolean complete) {
-		this.complete = complete;
+	
+	public String getDest() {
+		return dest;
 	}
-
-	public Flight getFlight() {
-		return flight;
+	
+	public void setDest(String dest) {
+		this.dest = dest;
 	}
-
-
-
-	public void setFlight(Flight flight) {
-		this.flight = flight;
-	}
-
-
-
+	
 	public Company getCompany() {
 		return company;
 	}
 
-
-
 	public void setCompany(Company company) {
 		this.company = company;
 	}
-
-
 
 	public String getCode() {
 		return code;
@@ -123,8 +113,5 @@ public class Flight {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	
-	
-	
-	
+
 }

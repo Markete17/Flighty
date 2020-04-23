@@ -1,22 +1,24 @@
 package flighty.main.database;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
 public class Company {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
 	
-	private String code; //2 words
-	private String name;
-	private String linkPage;
-	private String phone; //Customer support Phone
-	private int rating; //values=1-5
+	private String code; // Code of the company (IATA code)
+	private String name; // Name of the company
+	private String linkPage; // Link to the official web site of the company
+	private String phone; // Customer support Phone
+	private double rating; //Global rating of the users (value: 1-5)
 	
-	public Company(String code, String name, String linkPage, String phone, int rating) {
+	public Company(String code, String name, String linkPage, String phone, double rating) {
 		super();
 		this.code = code;
 		this.name = name;
@@ -57,11 +59,11 @@ public class Company {
 		this.phone = phone;
 	}
 
-	public int getRating() {
+	public double getRating() {
 		return rating;
 	}
 
-	public void setRating(int rating) {
+	public void setRating(double rating) {
 		this.rating = rating;
 	}
 	
