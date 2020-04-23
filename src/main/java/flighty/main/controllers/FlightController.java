@@ -15,6 +15,7 @@ import flighty.main.database.Company;
 import flighty.main.database.CompanyRepository;
 import flighty.main.database.Flight;
 import flighty.main.database.FlightRepository;
+import flighty.main.service.airportService;
 import flighty.main.service.flightService;
 
 @RestController
@@ -24,7 +25,7 @@ public class FlightController {
 	private FlightRepository flightRepository;
 	
 	@Autowired
-	private flightService flightService;
+	private airportService airportService;
 
 	@Autowired
 	private CompanyRepository companyRepository;
@@ -183,8 +184,8 @@ public class FlightController {
 	@RequestMapping("/search")
 	public List<Flight> search(@RequestParam String origin,@RequestParam String dest,@RequestParam String method,@RequestParam Date date) {
 		if(method.equals("One Way")) {
-			String orig = flightService.switchName(origin);
-			String des = flightService.switchName(dest);
+			String orig = airportService.getAirportCode(origin);
+			String des = airportService.getAirportCode(dest);
 			List<Flight> output = flightRepository.findByOriginAndDestAndDate(orig, des, date);
 			return output;
 		}

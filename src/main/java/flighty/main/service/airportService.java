@@ -18,5 +18,20 @@ public class airportService {
 		return airportRepository.airportList();
 		
 	}
+	
+	public String getAirportCode(String name) {
+		
+		switch (name) {
+		case "Madrid (Barajas-Adolfo Suarez)": return "BARJ";
+		case "Barcelona" : return "PRAT";
+		case "París (Charles de Gaulle)": return "GAUL";
+		case "Berlín (Tegel)": return "TEGE";
+		case "Lisboa":return "PRTL";
+		case "Madrid (Cuatro Vientos)":return "LECU";
+		case "Paris (Orly)": return "ORLY";
+		case "Berlín (Schönefeld)": return "SCHO";
+		default: return "nothing";
+		}
+	}
 
 }
