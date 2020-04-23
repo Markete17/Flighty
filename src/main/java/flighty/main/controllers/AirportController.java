@@ -1,18 +1,25 @@
 package flighty.main.controllers;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import flighty.main.database.Airport;
 import flighty.main.database.AirportRepository;
+import flighty.main.service.airportService;
 
 @RestController
 public class AirportController {
 	
 	@Autowired
 	private AirportRepository airportRepository;
+	
+	@Autowired
+	private airportService airportService;
 
 	@PostConstruct
 	public void init() {
@@ -39,6 +46,12 @@ public class AirportController {
 		airportRepository.save(a6);
 		airportRepository.save(a7);
 		airportRepository.save(a8);
+	}
+	
+	@GetMapping("/airports")
+	public List<String> airportList(){
+		return this.airportService.airportList();
+		
 	}
 	
 }

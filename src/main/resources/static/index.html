@@ -18,6 +18,8 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- jQuery ui CSS-->
+<link href="/styles/jquery-ui.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div class="super_container">
@@ -80,30 +82,24 @@
 						<div class="home_search_container">
 							<div class="home_search_title">Search for your trip</div>
 							<div class="home_search_content">
-								<form action="#" class="home_search_form" id="home_search_form">
+								<form action="/search" class="home_search_form" id="home_search_form">
 									<div
 										class="d-flex flex-lg-row flex-column align-items-start justify-content-lg-between justify-content-start">
-										<input id="tags" type="text"
-											class="search_input search_input_2" placeholder="From"
-											required="required"> <input id="tags" type="text"
-											class="search_input search_input_2" placeholder="To"
-											required>
-										<div>
+										<input type="text" name="origin" id="idLocalNames" class="search_input search_input_1" onfocus="this.value = '';" placeholder="From"> 
+										<input type="text" name="dest" id="idLocalNames" class="search_input search_input_1" onfocus="this.value = '';" placeholder="To">
+										<div class="search_input search_input_2">
 											<div>
-												<input type="radio" id="ida" name="drone" value="ida" required>
+												<input type="radio" id="ida" name="method" value="One Way" required>
 												<label for="ida">One way</label>
 											</div>
 											<div>
-												<input type="radio" id="idayvuelta" name="drone"
-													value="idayvuelta"> <label for="idayvuelta">Round trip</label>
+												<input type="radio" id="idayvuelta" name="method"
+													value="Round Trip"> <label for="idayvuelta">Round trip</label>
 											</div>
 										</div>
-										<input type="date" class="search_input search_input_3"
+										<input type="date" name="date" class="search_input search_input_3"
 											placeholder="Fecha de ida" required> 
-										<input
-											type="date" class="search_input search_input_3"
-											placeholder="Fecha de vuelta" required>
-										<button class="home_search_button">search</button>
+										<input type="submit" class="home_search_button" value="Search">
 									</div>
 								</form>
 							</div>
@@ -295,5 +291,10 @@
 	<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 	<script src="js/custom.js"></script>
 	<script src="js/index.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="></script>
+	<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+<!-- jQuery ui JS-->
+<script src="/js/jquery-ui.min.js"></script>
 </body>
 </html>

@@ -28,6 +28,8 @@ public class Flight {
 
 	@OneToOne
 	private Company company;
+	
+	public Flight() {}
 
 	public Flight(String code, Company company, String origin, String dest, Date date, int hour, int minutes, int flightTime, int price) {
 		super();

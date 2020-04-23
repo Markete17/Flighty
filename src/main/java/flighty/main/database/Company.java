@@ -18,6 +18,7 @@ public class Company {
 	private String phone; // Customer support Phone
 	private double rating; //Global rating of the users (value: 1-5)
 	
+	public Company() {}
 	public Company(String code, String name, String linkPage, String phone, double rating) {
 		super();
 		this.code = code;

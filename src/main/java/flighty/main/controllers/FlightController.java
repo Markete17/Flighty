@@ -1,22 +1,30 @@
 package flighty.main.controllers;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import flighty.main.database.Company;
 import flighty.main.database.CompanyRepository;
 import flighty.main.database.Flight;
 import flighty.main.database.FlightRepository;
+import flighty.main.service.flightService;
 
 @RestController
 public class FlightController {
 
 	@Autowired
 	private FlightRepository flightRepository;
+	
+	@Autowired
+	private flightService flightService;
 
 	@Autowired
 	private CompanyRepository companyRepository;
@@ -172,4 +180,19 @@ public class FlightController {
 		flightRepository.save(f7);
 	}
 	
-}
+	@RequestMapping("/search")
+	public List<Flight> search(@RequestParam String origin,@RequestParam String dest,@RequestParam String method,@RequestParam Date date) {
+		if(method.equals("One Way")) {
+			String orig = flightService.switchName(origin);
+			String des = flightService.switchName(dest);
+			List<Flight> output = flightRepository.findByOriginAndDestAndDate(orig, des, date);
+			return output;
+		}
+		else {
+			return null; //ida y vuelta code
+		}
+		
+		
+	}
+		
+	}

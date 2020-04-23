@@ -15,6 +15,7 @@ public class Airport {
 	private String code; // Airport code consisting of 4 capital letters
 	private String name; // Name of the city where the city is located and if there are several airports the name of the airport
 	
+	public Airport() {}
 	public Airport(String code, String name) {
 		super();
 		this.code = code;
