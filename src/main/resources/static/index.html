@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
 <title>Flighty</title>
+<!-- SEO Meta Tags-->
 <meta charset="utf-8">
 <meta name="description" content="Distributed systems project">
+<!-- Viewport-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Customizer styles -->
 <link rel="stylesheet" type="text/css"
 	href="styles/bootstrap4/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"
@@ -15,16 +18,14 @@
 	href="plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/responsive.css">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<!-- jQuery ui CSS-->
-<link href="/styles/jquery-ui.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
+<!-- Body-->
 <body>
 	<div class="super_container">
 
-		<!-- Header -->
+		<!-- Header (Sticky header with the logo of the web page) -->
 
 		<header class="header">
 			<div class="container">
@@ -34,7 +35,7 @@
 							class="header_content d-flex flex-row align-items-center justify-content-start">
 							<div
 								class="header_content_inner d-flex flex-row align-items-end justify-content-start">
-								<img class="intro_icon" src="/images/logo.png">
+								<img class="header_icon" src="/images/logo.png">
 								<div class="logo">
 									<a href="index.html">Flighty</a>
 								</div>
@@ -45,7 +46,7 @@
 			</div>
 		</header>
 
-		<!-- Home -->
+		<!-- Home (Welcome message of the web page with a backgroung image) -->
 
 		<div class="home">
 			<!-- Home Slider -->
@@ -53,16 +54,13 @@
 				<div class="owl-carousel owl-theme home_slider">
 					<!-- Slide -->
 					<div class="owl-item">
-						<div class="background_image"
-							style="background-image: url(images/home_slider.jpg)"></div>
+						<div class="background_image"></div>
 						<div class="home_slider_content_container">
 							<div class="container">
 								<div class="row">
 									<div class="col">
-										<div class="home_slider_content">
-											<div class="home_title">
-												<h2>Let us take you away</h2>
-											</div>
+										<div class="home_title">
+											<h2>A great journey begins with a simple step</h2>
 										</div>
 									</div>
 								</div>
@@ -73,7 +71,7 @@
 			</div>
 		</div>
 
-		<!-- Search -->
+		<!-- Search (search the flights that fit the different criteria ) -->
 
 		<div class="home_search">
 			<div class="container">
@@ -82,24 +80,39 @@
 						<div class="home_search_container">
 							<div class="home_search_title">Search for your trip</div>
 							<div class="home_search_content">
-								<form action="/search" class="home_search_form" id="home_search_form">
+								<form action="/search" id="home_search_form">
 									<div
-										class="d-flex flex-lg-row flex-column align-items-start justify-content-lg-between justify-content-start">
-										<input type="text" name="origin" id="idLocalNames" class="search_input search_input_1" onfocus="this.value = '';" placeholder="From"> 
-										<input type="text" name="dest" id="idLocalNames" class="search_input search_input_1" onfocus="this.value = '';" placeholder="To">
-										<div class="search_input search_input_2">
+										class="d-flex flex-lg-row flex-column justify-content-center justify-content-lg-between">
+										<input type="text" name="origin" id="idLocalNames"
+											class="search_input search_input_1 mr-2"
+											onfocus="this.value = '';" placeholder="From" required>
+										<input type="text" name="dest" id="idLocalNames"
+											class="search_input search_input_1"
+											onfocus="this.value = '';" placeholder="To" required>
+										<div class="search_input_2 mx-3">
 											<div>
-												<input type="radio" id="ida" name="method" value="One Way" required>
-												<label for="ida">One way</label>
+												<input checked type="radio" id="one_way" name="method"
+													value="One Way" required> <label for="one_way">One
+													way</label>
 											</div>
 											<div>
-												<input type="radio" id="idayvuelta" name="method"
-													value="Round Trip"> <label for="idayvuelta">Round trip</label>
+												<input type="radio" id="round_trip" name="method"
+													value="Round Trip"> <label for="round_trip">Round
+													trip</label>
 											</div>
 										</div>
-										<input type="date" name="date" class="search_input search_input_3"
-											placeholder="Fecha de ida" required> 
-										<input type="submit" class="home_search_button" value="Search">
+										<input type="text" name="date1" id="date1"
+											onfocus="(this.type='date')"
+											onblur="(!this.value ? this.type='text' : this.type='date')"
+											class="search_input search_input_3 mr-2"
+											placeholder="Outbound Date" required> <input
+											type="text" name="date2" id="date2"
+											onfocus="(this.type='date')"
+											onblur="(!this.value ? this.type='text' : this.type='date')"
+											class="search_input search_input_3 mr-2 visibility"
+											placeholder="Return Date" required> <input
+											type="submit" id="search" class="home_search_button"
+											value="Search">
 									</div>
 								</form>
 							</div>
@@ -109,192 +122,28 @@
 			</div>
 		</div>
 
-		<!-- Intro -->
+		<!-- Intro (where the different flights are displayed) -->
 
 		<div class="intro">
-			<div class="intro_background"
-				style="background-image: url(images/intro.png)"></div>
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="intro_container">
-							<div class="row">
-
-								<!-- Intro Item -->
-								<div class="col-lg-4 intro_col">
-									<div
-										class="intro_item d-flex flex-row align-items-end justify-content-start">
-										<div class="intro_icon">
-											<img src="images/beach.svg" alt="">
-										</div>
-										<div class="intro_content">
-											<div class="intro_title">Top Destinations</div>
-											<div class="intro_subtitle"></div>
-										</div>
-									</div>
-								</div>
-
-								<!-- Intro Item -->
-								<div class="col-lg-4 intro_col">
-									<div
-										class="intro_item d-flex flex-row align-items-end justify-content-start">
-										<div class="intro_icon">
-											<img src="images/wallet.svg" alt="">
-										</div>
-										<div class="intro_content">
-											<div class="intro_title">The Best Prices</div>
-											<div class="intro_subtitle"></div>
-										</div>
-									</div>
-								</div>
-
-								<!-- Intro Item -->
-								<div class="col-lg-4 intro_col">
-									<div
-										class="intro_item d-flex flex-row align-items-end justify-content-start">
-										<div class="intro_icon">
-											<img src="images/suitcase.svg" alt="">
-										</div>
-										<div class="intro_content">
-											<div class="intro_title">Amazing Services</div>
-											<div class="intro_subtitle"></div>
-										</div>
-									</div>
-								</div>
-
-							</div>
-						</div>
-					</div>
-				</div>
+			<div class="intro_background mb-5"
+				style="background-image: url(images/intro.png)">
 			</div>
-		</div>
-
-		<!-- Destinations -->
-
-		<div class="destinations" id="destinations">
-			<div class="container">
-				<div class="row">
-					<div class="col text-center">
-						<div class="section_subtitle">Amazing places</div>
-						<div class="section_title">
-							<h2>Best flights</h2>
-						</div>
+			<section class="mt-5">
+				<div class="container">
+					<h1 class="text-center text-dark mb-5">Flights</h1>
+					<div class="row">
+						
 					</div>
 				</div>
-				<div class="row destinations_row">
-					<div class="col">
-						<div class="destinations_container item_grid">
-
-							<!-- Destination -->
-							<div class="destination item">
-								<div class="destination_image">
-									<img src="images/destination_1.jpg" alt="">
-									<div class="spec_offer text-center">
-										<a href="#">Special Offer</a>
-									</div>
-								</div>
-								<div class="destination_content">
-									<div class="destination_title">
-										<a href="destinations.html">Bali</a>
-									</div>
-									<div class="destination_subtitle">
-										<p>Nulla pretium tincidunt felis, nec.</p>
-									</div>
-									<div class="destination_price">From $679</div>
-								</div>
-							</div>
-
-							<!-- Destination -->
-							<div class="destination item">
-								<div class="destination_image">
-									<img src="images/destination_2.jpg" alt="">
-								</div>
-								<div class="destination_content">
-									<div class="destination_title">
-										<a href="destinations.html">Indonesia</a>
-									</div>
-									<div class="destination_subtitle">
-										<p>Nulla pretium tincidunt felis, nec.</p>
-									</div>
-									<div class="destination_price">From $679</div>
-								</div>
-							</div>
-
-							<!-- Destination -->
-							<div class="destination item">
-								<div class="destination_image">
-									<img src="images/destination_3.jpg" alt="">
-								</div>
-								<div class="destination_content">
-									<div class="destination_title">
-										<a href="destinations.html">San Francisco</a>
-									</div>
-									<div class="destination_subtitle">
-										<p>Nulla pretium tincidunt felis, nec.</p>
-									</div>
-									<div class="destination_price">From $679</div>
-								</div>
-							</div>
-
-							<!-- Destination -->
-							<div class="destination item">
-								<div class="destination_image">
-									<img src="images/destination_4.jpg" alt="">
-								</div>
-								<div class="destination_content">
-									<div class="destination_title">
-										<a href="destinations.html">Paris</a>
-									</div>
-									<div class="destination_subtitle">
-										<p>Nulla pretium tincidunt felis, nec.</p>
-									</div>
-									<div class="destination_price">From $679</div>
-								</div>
-							</div>
-
-							<!-- Destination -->
-							<div class="destination item">
-								<div class="destination_image">
-									<img src="images/destination_5.jpg" alt="">
-								</div>
-								<div class="destination_content">
-									<div class="destination_title">
-										<a href="destinations.html">Phi Phi Island</a>
-									</div>
-									<div class="destination_subtitle">
-										<p>Nulla pretium tincidunt felis, nec.</p>
-									</div>
-									<div class="destination_price">From $679</div>
-								</div>
-							</div>
-
-							<!-- Destination -->
-							<div class="destination item">
-								<div class="destination_image">
-									<img src="images/destination_6.jpg" alt="">
-								</div>
-								<div class="destination_content">
-									<div class="destination_title"></div>
-									<div class="destination_subtitle"></div>
-									<div class="destination_price">From $679</div>
-								</div>
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
+			</section>
 		</div>
 	</div>
+	<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="styles/bootstrap4/bootstrap.min.js"></script>
 	<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 	<script src="js/custom.js"></script>
 	<script src="js/index.js"></script>
-	<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="></script>
-	<!-- jQuery -->
-<script src="/js/jquery.min.js"></script>
-<!-- jQuery ui JS-->
-<script src="/js/jquery-ui.min.js"></script>
 </body>
 </html>

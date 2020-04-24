@@ -62,7 +62,7 @@ $(document).ready(function()
 
 	/* 
 
-	4. Init Home Slider
+	3. Init Home Slider
 
 	*/
 

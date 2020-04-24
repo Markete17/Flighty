@@ -8,14 +8,9 @@
 1. Fonts
 2. Body and some general stuff
 3. Header
-4. Menu
-5. Home
-6. Home Search
-7. Intro
-8. Destinations
-9. Testimonials
-10. News
-11. Footer
+4. Home
+5. Home Search
+6. Intro
 
 
 ******************************/
@@ -137,105 +132,14 @@ h6::selection
 {
 	
 }
-.form-control
-{
-	color: #db5246;
-}
-section
-{
-	display: block;
-	position: relative;
-	box-sizing: border-box;
-}
-.clear
-{
-	clear: both;
-}
-.clearfix::before, .clearfix::after
-{
-	content: "";
-	display: table;
-}
-.clearfix::after
-{
-	clear: both;
-}
-.clearfix
-{
-	zoom: 1;
-}
-.float_left
-{
-	float: left;
-}
-.float_right
-{
-	float: right;
-}
-.trans_200
-{
-	-webkit-transition: all 200ms ease;
-	-moz-transition: all 200ms ease;
-	-ms-transition: all 200ms ease;
-	-o-transition: all 200ms ease;
-	transition: all 200ms ease;
-}
-.trans_300
-{
-	-webkit-transition: all 300ms ease;
-	-moz-transition: all 300ms ease;
-	-ms-transition: all 300ms ease;
-	-o-transition: all 300ms ease;
-	transition: all 300ms ease;
-}
-.trans_400
-{
-	-webkit-transition: all 400ms ease;
-	-moz-transition: all 400ms ease;
-	-ms-transition: all 400ms ease;
-	-o-transition: all 400ms ease;
-	transition: all 400ms ease;
-}
-.trans_500
-{
-	-webkit-transition: all 500ms ease;
-	-moz-transition: all 500ms ease;
-	-ms-transition: all 500ms ease;
-	-o-transition: all 500ms ease;
-	transition: all 500ms ease;
-}
-.fill_height
-{
-	height: 100%;
-}
 .super_container
 {
 	width: 100%;
 	overflow: hidden;
 }
-.prlx_parent
-{
-	overflow: hidden;
-}
-.prlx
-{
-	height: 130% !important;
-}
-.parallax-window
-{
-    min-height: 400px;
-    background: transparent;
-}
-.parallax_background
-{
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-}
 .background_image
 {
+	background-image: url('../images/home_slider.jpg');
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -244,10 +148,6 @@ section
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
-}
-.nopadding
-{
-	padding: 0px !important;
 }
 
 /*********************************
@@ -297,111 +197,25 @@ section
 	color: #FFFFFF;
 	line-height: 0.75;
 }
-.main_nav
+
+.header_icon
 {
-	margin-left: 242px;
+	width: 128px;
+	height: 68px;
 }
-.main_nav ul li
+.header_icon img
 {
-	position: relative;
-}
-.main_nav ul li::after
-{
-	display: block;
-	position: absolute;
-	left: 50%;
-	-webkit-transform: translateX(-50%);
-	-moz-transform: translateX(-50%);
-	-ms-transform: translateX(-50%);
-	-o-transform: translateX(-50%);
-	transform: translateX(-50%);
-	top: -104px;
-	width: 2px;
-	height: 0px;
-	background: #FFFFFF;
-	content: '';
-	visibility: hidden;
-	opacity: 0;
-	-webkit-transition: all 200ms ease;
-	-moz-transition: all 200ms ease;
-	-ms-transition: all 200ms ease;
-	-o-transition: all 200ms ease;
-	transition: all 200ms ease;
-}
-.main_nav ul li.active::after,
-.main_nav ul li:hover::after
-{
-	height: 100px;
-	visibility: visible;
-	opacity: 1;
-}
-.main_nav ul li:not(:last-child)
-{
-	margin-right: 54px;
-}
-.main_nav ul li a
-{
-	font-family: 'Oswald', sans-serif;
-	font-size: 16px;
-	font-weight: 400;
-	color: #FFFFFF;
-	white-space: nowrap;
-}
-.header_phone
-{
-	margin-right: 60px;
-	font-family: 'Oswald', sans-serif;
-	font-size: 18px;
-	font-weight: 500;
-	color: #FFFFFF;
-}
-.header_social
-{
-	position: absolute;
-	top: 0;
-	right: 119px;
-	height: 148px;
-	-webkit-transition: all 200ms ease;
-	-moz-transition: all 200ms ease;
-	-ms-transition: all 200ms ease;
-	-o-transition: all 200ms ease;
-	transition: all 200ms ease;
-}
-.header_social.scrolled
-{
-	height: 90px;
-}
-.header_social ul
-{
-	margin-top: 6px;
-}
-.header_social ul li:not(:last-child)
-{
-	margin-right: 32px;
-}
-.header_social ul li a i
-{
-	font-size: 14px;
-	color: rgba(255,255,255,1);
-	-webkit-transition: all 200ms ease;
-	-moz-transition: all 200ms ease;
-	-ms-transition: all 200ms ease;
-	-o-transition: all 200ms ease;
-	transition: all 200ms ease;
-}
-.header_social ul li a i:hover
-{
-	color: rgba(255,255,255,0.5);
+	max-width: 100%;
 }
 
 /*********************************
-5. Home
+4. Home
 *********************************/
 
 .home
 {
 	width: 100%;
-	height: 834px;
+	height: 934px;
 }
 .home_slider_container
 {
@@ -411,7 +225,7 @@ section
 .home_slider_content_container
 {
 	position: absolute;
-	top: 31.5%;
+	top: 27.5%;
 	left: 0;
 	width: 100%;
 	z-index: 1;
@@ -419,73 +233,14 @@ section
 }
 .home_title h2
 {
-	font-size: 100px;
+	font-size: 90px;
 	line-height: 1.1;
 	font-weight: 400;
 	color: #FFFFFF;
 }
-.home_page_nav
-{
-	position: absolute;
-	right: 119px;
-	top: 44.2%;
-	z-index: 2;
-}
-.home_page_nav ul li
-{
-	position: relative;
-}
-.home_page_nav ul li a
-{
-	font-family: 'Oswald', sans-serif;
-	font-size: 16px;
-	color: rgba(255,255,255,0.63);
-	-webkit-transition: all 400ms ease;
-	-moz-transition: all 400ms ease;
-	-ms-transition: all 400ms ease;
-	-o-transition: all 400ms ease;
-	transition: all 400ms ease;
-}
-.home_page_nav ul li:not(:last-child)
-{
-	margin-bottom: 32px;
-}
-.home_page_nav ul li span
-{
-	margin-left: 30px;
-}
-.home_page_nav ul li::after
-{
-	display: block;
-	position: absolute;
-	right: -4px;
-	bottom: -6px;
-	width: 0px;
-	height: 2px;
-	background: rgba(255,255,255,0.63);
-	visibility: hidden;
-	opacity: 0;
-	content: '';
-	-webkit-transition: all 400ms ease;
-	-moz-transition: all 400ms ease;
-	-ms-transition: all 400ms ease;
-	-o-transition: all 400ms ease;
-	transition: all 400ms ease;
-}
-.home_page_nav ul li:hover::after
-{
-	visibility: visible;
-	opacity: 1;
-	background: rgba(255,255,255,1);
-	width: calc(100% + 28px);
-}
-.home_page_nav ul li:hover a
-{
-	color: rgba(255,255,255,1);
-}
 
 /*********************************
-6. Home Search
+5. Home Search
 *********************************/
 
 .home_search
@@ -547,20 +302,17 @@ section
 }
 .search_input_1
 {
-	width: 25%;
+	min-width: 20%;
 }
 .search_input_2
 {
-	width: 15%;
+	min-width: 12%;
 }
 .search_input_3
 {
-	width: 15%;
+	min-width: 12%;
 }
-.search_input_4
-{
-	width: 20%;
-}
+
 .search_input::-webkit-input-placeholder
 {
 	font-family: 'Oswald', sans-serif;
@@ -596,6 +348,12 @@ section
 	font-weight: 400 !important;
 	color: #72728c !important;
 }
+
+.visibility
+{
+	display: none;	
+}
+
 .home_search_button
 {
 	width: 161px;
@@ -612,8 +370,18 @@ section
 	cursor: pointer;
 }
 
+.home_search_button:hover
+{
+	opacity: 0.8;
+}
+
+.home_search_button:active
+{
+	transform: translateY(0.5px);
+}
+
 /*********************************
-7. Intro
+6. Intro
 *********************************/
 
 .intro
@@ -633,125 +401,4 @@ section
 	background-size: cover;
 	background-position: center center;
 }
-.intro_container
-{
-	width: 100%;
-	border-bottom: solid 2px #e4e6e8;
-	padding-top: 142px;
-	padding-bottom: 121px;
-}
-.intro_icon
-{
-	width: 128px;
-	height: 68px;
-}
-.intro_icon img
-{
-	max-width: 100%;
-}
-.intro_content
-{
-	padding-left: 28px;
-}
-.intro_title
-{
-	font-family: 'Oswald', sans-serif;
-	font-size: 18px;
-	color: #181818;
-	font-weight: 400;
-}
 
-/*********************************
-8. Destinations
-*********************************/
-
-.destinations
-{
-	width: 100%;
-	background: #FFFFFF;
-	padding-top: 115px;
-	padding-bottom: 116px;
-}
-.section_subtitle
-{
-	font-family: 'Oswald', sans-serif;
-	font-size: 12px;
-	font-weight: 400;
-	color: #72728c;
-	line-height: 0.75;
-	text-transform: uppercase;
-	letter-spacing: 0.2em;
-}
-.section_title
-{
-	color: #181818;
-	margin-top: 26px;
-}
-.destinations_row
-{
-	margin-top: 99px;
-}
-.destination_image
-{
-	width: 100%;
-}
-.destination_image img
-{
-	max-width: 100%;
-}
-.spec_offer
-{
-	position: absolute;
-	top: 15px;
-	left: 16px;
-	width: 118px;
-	height: 36px;
-	background: #181818;
-}
-.spec_offer a
-{
-	display: block;
-	font-family: 'Oswald', sans-serif;
-	font-size: 16px;
-	color: #FFFFFF;
-	line-height: 36px;
-	font-weight: 400;
-}
-.destinations_container
-{
-	width: calc(100% + 30px);
-	left: -15px;
-}
-.destination
-{
-	width: calc(100% / 3);
-	padding-left: 15px;
-	padding-right: 15px;
-	margin-bottom: 33px;
-}
-.destination_content
-{
-
-}
-.destination_title
-{
-	margin-top: 15px;
-}
-.destination_title a
-{
-	font-family: 'Oswald', sans-serif;
-	font-size: 30px;
-	font-weight: 400;
-	color: #181818;
-}
-.destination_subtitle
-{
-	margin-top: -4px;
-}
-.destination_price
-{
-	font-size: 16px;
-	font-weight: 700;
-	color: #181818;
-	margin-top: 16px;
-}

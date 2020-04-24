@@ -1,14 +1,11 @@
 package flighty.main.database;
 
 import java.sql.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Flight {
@@ -18,6 +15,7 @@ public class Flight {
 	Long id;
 
 	private String code; // Code of the flight: code of the company + 4 digits
+	private String company; // Name of the company
 	private String origin; // Origin airport
 	private String dest; // Destination airport
 	private Date date; // Flight departure date
@@ -25,13 +23,10 @@ public class Flight {
 	private int minutes; // Flight departure time (minutes)
 	private int flightTime; // Duration of the flight
 	private int price; // Cost of the flight
-
-	@OneToOne
-	private Company company;
 	
 	public Flight() {}
 
-	public Flight(String code, Company company, String origin, String dest, Date date, int hour, int minutes, int flightTime, int price) {
+	public Flight(String code, String company, String origin, String dest, Date date, int hour, int minutes, int flightTime, int price) {
 		super();
 		this.code = code;
 		this.company = company;
@@ -60,11 +55,11 @@ public class Flight {
 		this.dest = dest;
 	}
 	
-	public Company getCompany() {
+	public String getCompany() {
 		return company;
 	}
 
-	public void setCompany(Company company) {
+	public void setCompany(String company) {
 		this.company = company;
 	}
 
