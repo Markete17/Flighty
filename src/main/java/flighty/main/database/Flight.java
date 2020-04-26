@@ -15,7 +15,7 @@ public class Flight {
 	Long id;
 
 	private String code; // Code of the flight: code of the company + 4 digits
-	private String company; // Name of the company
+	private String company; // Code of the company: IATA code
 	private String origin; // Origin airport
 	private String dest; // Destination airport
 	private Date date; // Flight departure date
