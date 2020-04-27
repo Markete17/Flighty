@@ -16,10 +16,11 @@
 	href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
 <link rel="stylesheet" type="text/css"
 	href="plugins/OwlCarousel2-2.2.1/animate.css">
-<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
-<link rel="stylesheet" type="text/css" href="styles/responsive.css">
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="styles/responsive.css">
+<link rel="stylesheet" type="text/css" href="styles/jquery.rateyo.css">
 </head>
 <!-- Body-->
 <body>
@@ -138,6 +139,17 @@
 				</div>
 			</div>
 		</div>
+		
+		<!-- Dialog (information of the company) -->
+		
+		<div id="dialog">
+			<h3 class="text-center text-muted">Cathay Pacific Airways</h3>
+			<p class="mt-4 text-light"><span class="font-weight-bold">Code IATA: </span><span id="code_iata">CP</span></p>
+			<p class="text-light"><span class="font-weight-bold">Company page: </span><span id="page">https://www.cathay.com</span></p>
+			<p class="text-light"><span class="font-weight-bold">Customer service phone: </span><span id="phone">938 342 236 223</span></p>
+			<p class="text-light mb-2"><span class="font-weight-bold">Rating: </span></p>
+			<div id="rateYo"></div>
+		</div>
 	</div>
 	<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -146,5 +158,6 @@
 	<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 	<script src="js/custom.js"></script>
 	<script src="js/index.js"></script>
+	<script src="js/jquery.rateyo.js"></script>
 </body>
 </html>

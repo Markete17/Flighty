@@ -7,6 +7,8 @@
 2. Autocomplete functionality
 3. Modify inputs flight dates
 4. Submit form
+5. Dialog with the info company
+6. Rating of the company
 
 ******************************/
 
@@ -21,6 +23,8 @@ $( document ).ready(function() {
     const url_airports = 'http://localhost:8080/airports';
     	
    	var list = [];
+   	
+   	$.fn.bootstrapBtn = $.fn.button.noConflict();
     
 	/* 
 
@@ -105,95 +109,201 @@ $( document ).ready(function() {
     	
     	// Get flights with the search criteria
     	var url = $(this).attr('action') + '?' + $(this).serialize();
+    	var div_parent = $('#list_flights');
     	
     	if (!$('#date2').val()) {
     		url = url + encodeURI('1927-03-14'); //Avoid error in backend
     	}
     	
+    	// If already flights we remove it
+    	div_parent.empty();
+    	
     	$.getJSON(url, function (response) {
+    		// Remove text of not_found
     		$('#not_found').text('');
-    		$('#list_flights').append(
-				["<h2 class='w-100 text-center pb-3'>",
-					"<span class='text-dark'>7 July Tuesday - 14 July Tuesday</span>",
-				"</h2>",
-				"<div class='row d-sm-flex justify-content-between mt-4 mb-3 ml-4 mr-4 border-bottom'>",
-					"<!-- Outgoing flight -->",
-					"<div class='d-block text-center text-sm-left'>",
-						"<div class='row'>",
-							"<img class='img_icon mr-sm-2' src='/images/plane_orig.png'",
-								"alt='plane taking off'>",
-							"<table class='d-flex table-sm text-center'>",
-								"<tbody>",
-									"<tr>",
-										"<th><small>Madrid (Barajas-Adolfo Suarez)</small></th>",
-										"<th></th>",
-										"<th><small>Barcelona</small></th>",
-									"</tr>",
-									"<tr>",
-										"<th><h3 class='text-dark'>07:30</h3></th>",
-										"<th><h3 class='text-dark mx-3'>-</h3></th>",
-										"<th><h3 class='text-dark'>08:55</h3></th>",
-									"</tr>",
-								"</tbody>",
-							"</table>",
-							"<img class='img_icon ml-sm-1' src='/images/plane_dest.png'",
-								"alt='plane landing'>",
-						"</div>",
-						"<div class='row d-block text-center'>",
-							"<h4 class='text-primary'>235€</h4>",
-							"<h6>",
-								"<span class='font-weight-bold'>Duration:</span> 173 min",
-							"</h6>",
-							"<h6>",
-								"<span class='font-weight-bold'>Company:</span> Cathay Pacific",
-									"Airways",
-							"</h6>",
-						"</div>",
-					"</div>",
-					"<!-- Image between outcoming & incoming flight -->",
-					"<div class='d-block mx-auto mt-2'>",
-						"<div class='row'>",
-							"<img class='img_icon' src='/images/arrows.png'",
-								"alt='two arrows'>",
-						"</div>",
-						"<div class='row d-block text-center mt-3'>",
-							"<h3 class='text-primary'>235€</h3>",
-						"</div>",
-					"</div>",
-					"<!-- Incoming flight -->",
-					"<div class='d-block text-center text-sm-left'>",
-						"<div class='row'>",
-							"<img class='img_icon mr-sm-2' src='/images/plane_orig.png'",
-								"alt='plane taking off'>",
-							"<table class='d-flex table-sm text-center'>",
-								"<tbody>",
-									"<tr>",
-										"<th><small>Madrid (Barajas-Adolfo Suarez)</small></th>",
-										"<th></th>",
-										"<th><small>Barcelona</small></th>",
-									"</tr>",
-									"<tr>",
-										"<th><h3 class='text-dark'>07:30</h3></th>",
-										"<th><h3 class='text-dark mx-3'>-</h3></th>",
-										"<th><h3 class='text-dark'>08:55</h3></th>",
-									"</tr>",
-								"</tbody>",
-							"</table>",
-							"<img class='img_icon ml-sm-1' src='/images/plane_dest.png'",
-								"alt='plane landing'>",
-						"</div>",
-						"<div class='row d-block text-center'>",
-							"<h4 class='text-primary'>235€</h4>",
-							"<h6>",
-								"<span class='font-weight-bold'>Duration:</span> 173 min",
-							"</h6>",
-							"<h6>",
-								"<span class='font-weight-bold'>Company:</span> Cathay Pacific",
-								"Airways",
-							"</h6>",
-						"</div>",
-					"</div>",
-				"</div>"].join(""));
+			
+    		if ($('input[name=method]:checked').val() === 'One Way') {
+    			div_parent.append(
+    				["<h2 class='w-100 text-center pb-3'>",
+    					"<span class='text-dark'>", transformFormatDate($('#date1').val()),
+    					" (outbound flight)</h2>"].join(""));
+    			
+    			for (flight of response) {
+    				
+    				var minutes = flight.minutes;
+    				if (minutes < 10) minutes = "0" + minutes;
+    				
+    				var hours_return = flight.hour + Math.floor(flight.flightTime / 60);
+    				var minutes_return = flight.minutes + (flight.flightTime % 60);
+    				
+    				while (minutes_return >= 60) {
+    					minutes_return -= 60;
+    					hours_return++;
+    				}
+    				
+    				if (minutes_return < 10) minutes_return = "0" + minutes_return;
+    				
+    				div_parent.append(
+    					["<hr>",
+            			 "<div class='row d-sm-flex justify-content-between m-4 border-bottom'>",
+        					"<!-- Outgoing flight -->",
+        					"<div class='d-block text-center mx-auto text-sm-left'>",
+        						"<div class='row'>",
+        							"<img class='img_icon mr-sm-2' src='/images/plane_orig.png'",
+        								"alt='plane taking off'>",
+        							"<table class='d-flex table-sm text-center'>",
+        								"<tbody>",
+        									"<tr>",
+        										"<th><small>", $('input[name=origin]').val(), "</small></th>",
+        										"<th></th>",
+        										"<th><small>", $('input[name=dest]').val(), "</small></th>",
+        									"</tr>",
+        									"<tr>",
+        										"<th><h3 class='text-dark'>", flight.hour, ":", minutes, "</h3></th>",
+        										"<th><h3 class='text-dark mx-3'>-</h3></th>",
+        										"<th><h3 class='text-dark'>", hours_return, ":", minutes_return, "</h3></th>",
+        									"</tr>",
+        								"</tbody>",
+        							"</table>",
+        							"<img class='img_icon ml-sm-1' src='/images/plane_dest.png'",
+        								"alt='plane landing'>",
+        						"</div>",
+        						"<div class='row d-block text-center'>",
+        							"<h4 class='text-primary'>", flight.price, "€ </h4>",
+        							"<h6>",
+        								"<span class='font-weight-bold'>Duration: </span>", flight.flightTime, " min",
+        							"</h6>",
+        							"<a class='color_gray' id='open_dialog' data-value='", flight.company, "' href='#'><h6>",
+        								"<span class='font-weight-bold'>Company: </span>", getCompanyName(flight.company), " (", flight.company, ")",
+        							"</h6></a>",
+        						"</div>",
+        					"</div>",
+        				 "</div>"].join(""));
+    			}
+    			
+    		} else {
+    			// Date of outbound & inbound flights
+    			div_parent.append(
+    				["<h2 class='w-100 text-center pb-3'>",
+    					"<span class='text-dark'>", transformFormatDate($('#date1').val())," (outbound flight) - ", transformFormatDate($('#date2').val()),
+    					" (inbound flight) </span>",
+    				"</h2>"].join(""));
+    			
+    			for (var i = 0; i < response.length; i = i + 2) {
+    				// Minutes outbound flight
+    				var min_1 = response[i].minutes;
+    				if (min_1 < 10) min_1 = "0" + min_1;
+    				
+    				// Minutes inbound flight
+    				var min_2 = response[i + 1].minutes;
+    				if (min_2 < 10) min_2 = "0" + min_2;
+    				
+    				//Arrival time for both flights
+    				var hours_1 = response[i].hour + Math.floor(response[i].flightTime / 60);
+    				var minutes_1 = response[i].minutes + (response[i].flightTime % 60);
+    				
+    				var hours_2 = response[i + 1].hour + Math.floor(response[i + 1].flightTime / 60);
+    				var minutes_2 = response[i + 1].minutes + (response[i + 1].flightTime % 60);
+    				
+    				// If minutes are greater than 60 reduce the minutes and add an hour
+    				while (minutes_1 >= 60) {
+    					minutes_1 -= 60;
+    					hours_1++;
+    				} 
+    				
+    				while (minutes_2 >= 60) {
+    					minutes_2 -= 60;
+    					hours_2++;
+    				}
+    				
+    				if (minutes_1 < 10) minutes_1 = "0" + minutes_1;
+    				if (minutes_2 < 10) minutes_2 = "0" + minutes_2;
+    				
+    				// Discount if company is the same
+    				var total = response[i].price + response[i + 1].price;
+    				if (response[i].company === response[i + 1].company) 
+    					total = "<div class='text-danger go_search'><del>" + total + "€ </del></div>" + (total * 0.8);
+    				
+    				div_parent.append(
+            				["<hr>",
+            				"<div class='row d-sm-flex justify-content-between m-4 border-bottom'>",
+            					"<!-- Outgoing flight -->",
+            					"<div class='d-block text-center mx-auto text-sm-left'>",
+            						"<div class='row'>",
+            							"<img class='img_icon mr-sm-2' src='/images/plane_orig.png'",
+            								"alt='plane taking off'>",
+            							"<table class='d-flex table-sm text-center'>",
+            								"<tbody>",
+            									"<tr>",
+            										"<th><small>", $('input[name=origin]').val(), "</small></th>",
+            										"<th></th>",
+            										"<th><small>", $('input[name=dest]').val(), "</small></th>",
+            									"</tr>",
+            									"<tr>",
+            										"<th><h3 class='text-dark'>", response[i].hour, ":", min_1, "</h3></th>",
+            										"<th><h3 class='text-dark mx-3'>-</h3></th>",
+            										"<th><h3 class='text-dark'>", hours_1, ":", minutes_1, "</h3></th>",
+            									"</tr>",
+            								"</tbody>",
+            							"</table>",
+            							"<img class='img_icon ml-sm-1' src='/images/plane_dest.png'",
+            								"alt='plane landing'>",
+            						"</div>",
+            						"<div class='row d-block text-center'>",
+            							"<h4 class='text-primary'>", response[i].price, "€ </h4>",
+            							"<h6>",
+            								"<span class='font-weight-bold'>Duration: </span>", response[i].flightTime, " min",
+            							"</h6>",
+            							"<a class='color_gray' id='open_dialog' data-value='", response[i].company, "' href='#'><h6>",
+            								"<span class='font-weight-bold'>Company: </span>", getCompanyName(response[i].company), " (", response[i].company, ")",
+            							"</h6></a>",
+            						"</div>",
+            					"</div>",
+            					"<!-- Image between outcoming & incoming flight -->",
+            					"<div class='d-block mx-auto mt-2'>",
+            						"<div class='row'>",
+            							"<img class='img_icon' src='/images/arrows.png'",
+            								"alt='two arrows'>",
+            						"</div>",
+            						"<div class='row d-block text-center mt-3'>",
+            							"<h3 class='text-primary'>", total,"€ </h3>",
+            						"</div>",
+            					"</div>",
+            					"<!-- Incoming flight -->",
+            					"<div class='d-block text-center mx-auto text-sm-left'>",
+            						"<div class='row'>",
+            							"<img class='img_icon mr-sm-2' src='/images/plane_orig.png'",
+            								"alt='plane taking off'>",
+            							"<table class='d-flex table-sm text-center'>",
+            								"<tbody>",
+            									"<tr>",
+            										"<th><small>", $('input[name=dest]').val(), "</small></th>",
+            										"<th></th>",
+            										"<th><small>", $('input[name=origin]').val(), "</small></th>",
+            									"</tr>",
+            									"<tr>",
+            										"<th><h3 class='text-dark'>", response[i + 1].hour, ":", min_2, "</h3></th>",
+            										"<th><h3 class='text-dark mx-3'>-</h3></th>",
+            										"<th><h3 class='text-dark'>", hours_2, ":", minutes_2, "</h3></th>",
+            									"</tr>",
+            								"</tbody>",
+            							"</table>",
+            							"<img class='img_icon ml-sm-1' src='/images/plane_dest.png'",
+            								"alt='plane landing'>",
+            						"</div>",
+            						"<div class='row d-block text-center'>",
+            							"<h4 class='text-primary'>", response[i + 1].price, "€", "</h4>",
+            							"<h6>",
+            								"<span class='font-weight-bold'>Duration: </span>", response[i + 1].flightTime, " min",
+            							"</h6>",
+            							"<a class='color_gray' id='open_dialog' data-value='", response[i + 1].company, "' href='#'><h6>",
+            								"<span class='font-weight-bold'>Company: </span>", getCompanyName(response[i + 1].company), " (", response[i + 1].company, ")",
+            							"</h6></a>",
+            						"</div>",
+            					"</div>",
+            				"</div>"].join(""));	
+    			}    			
+    		}
     	}).fail(function() {
     		$('#not_found').text('No flights found');
     	});
@@ -203,5 +313,135 @@ $( document ).ready(function() {
 	        scrollTop: $(".intro").offset().top
 	    }, 2000);
     });
-        
+    
+    // Change the format of a date
+    function transformFormatDate(date) {
+    	var arr = date.split("-");
+    	var res = arr[2] + " ";
+    	
+    	switch (arr[1]) {
+    	case "01":
+    		res = res + "January";
+    		break;
+    	case "02":
+    		res = res + "February";
+    		break;
+    	case "03":
+    		res = res + "March";
+    		break;
+    	case "04":
+    		res = res + "April";
+    		break;
+    	case "05":
+    		res = res + "May";
+    		break;
+    	case "06":
+    		res = res + "June";
+    		break;
+    	case "07":
+    		res = res + "July";
+    		break;
+    	case "08":
+    		res = res + "August";
+    		break;
+    	case "09":
+    		res = res + "September";
+    		break;
+    	case "10":
+    		res = res + "October";
+    		break;
+    	case "11":
+    		res = res + "November";
+    		break;
+    	case "12":
+    		res = res + "December";
+    		break;
+    	}
+    	
+    	res = res + " " + arr[0];
+    	
+    	return res;
+    }
+    
+    // Get name of the company
+	function getCompanyName(code) {
+		switch (code) {
+		case "SA":
+			return "Singapore Airlines";
+		case "QA":
+			return "Qatar Airways";
+		case "NA":
+			return "ANA All Nippon Airways";
+		case "EA":
+			return "Emirates";
+		case "IB":
+			return "Iberia";
+		case "LU":
+			return "Lufthansa";
+		case "CP":
+			return "Cathay Pacific Airways";
+		case "UX":
+			return "Air Europa";
+		case "AF":
+			return "Air France";
+		default:
+			return "";
+		}
+	}
+	
+	/* 
+
+	5. Dialog with the info company
+
+	*/
+	
+	// Modify behaviour of dialog
+	$('#dialog').dialog({
+		autoOpen: false,
+		modal: true,
+		resizable: false,
+		height: 500,
+		width: 500,
+	    buttons: {
+	    	Ok: function() {
+	    		$( this ).dialog( "close" );
+	    	}
+	    },
+		show: {
+			effect: "puff",
+			duration: 1500
+		},
+		hide: {
+			effect: "fade",
+			duration: 1000
+		}
+	});
+	
+	// Get info of the company
+	$(document).on('click', '#open_dialog', function () {
+		var company = $(this).data('value');
+		var url = '/get_company?code=' + company;
+		$.getJSON(url, function(response) {
+			$('#code_iata').text(response.code);
+			$('#page').text(response.linkPage);
+			$('#phone').text(response.phone);
+			$('#rateYo').rateYo("rating",response.rating);
+		});
+		
+		$( "#dialog" ).dialog( "open" );
+		return false;
+    });
+	
+	/*
+	 
+	6. Dialog of the company
+	 
+	 */
+	
+	 // Modify behaviour of rating
+	 $("#rateYo").rateYo({
+	    starWidth: "45px",
+	    readOnly: true
+	  });
+	        
 });

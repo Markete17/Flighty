@@ -45,34 +45,13 @@ public class CompanyService {
 		companyRepository.save(c8);
 		companyRepository.save(c9);
 	}
-
+	
 	/**
 	 * @param code (code of the company)
-	 * @return name of the company
+	 * @return company
 	 */
-	public String getCompanyName(String code) {
-		switch (code) {
-		case "SA":
-			return "Singapore Airlines";
-		case "QA":
-			return "Qatar Airways";
-		case "NA":
-			return "ANA All Nippon Airways";
-		case "EA":
-			return "Emirates";
-		case "IB":
-			return "Iberia";
-		case "LU":
-			return "Lufthansa";
-		case "CP":
-			return "Cathay Pacific Airways";
-		case "UX":
-			return "Air Europa";
-		case "AF":
-			return "Air France";
-		default:
-			return "";
-		}
+	public Company findCompany(String code) {
+		return companyRepository.findByCode(code);
 	}
 
 }

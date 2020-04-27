@@ -11,8 +11,7 @@
 
 ******************************/
 
-$(document).ready(function()
-{
+$(document).ready(function() {
 	"use strict";
 
 	/* 
@@ -25,18 +24,15 @@ $(document).ready(function()
 	
 	setHeader();
 
-	$(window).on('resize', function()
-	{
+	$(window).on('resize', function() {
 		setHeader();
 
-		setTimeout(function()
-		{
+		setTimeout(function() {
 			$(window).trigger('resize.px.parallax');
 		}, 375);
 	});
 
-	$(document).on('scroll', function()
-	{
+	$(document).on('scroll', function() {
 		setHeader();
 	});
 
@@ -48,14 +44,11 @@ $(document).ready(function()
 
 	*/
 
-	function setHeader()
-	{
-		if($(window).scrollTop() > 127)
-		{
+	function setHeader() {
+		if($(window).scrollTop() > 127) {
 			header.addClass('scrolled');
 		}
-		else
-		{
+		else {
 			header.removeClass('scrolled');
 		}
 	}
@@ -66,13 +59,10 @@ $(document).ready(function()
 
 	*/
 
-	function initHomeSlider()
-	{
-		if($('.home_slider').length)
-		{
+	function initHomeSlider() {
+		if($('.home_slider').length) {
 			var homeSlider = $('.home_slider');
-			homeSlider.owlCarousel(
-			{
+			homeSlider.owlCarousel({
 				items:1,
 				autoplay:false,
 				loop:true,
