@@ -14,6 +14,9 @@ public class AirportController {
 	@Autowired
 	private airportService airportService;
 	
+	/**
+	 * @return list of the airport names
+	 */
 	@GetMapping("/airports")
 	public List<String> airportList(){
 		return this.airportService.airportList();

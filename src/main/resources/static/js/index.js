@@ -34,7 +34,7 @@ $( document ).ready(function() {
 
     $.get(url_airports, function(response, status){
         if (status == 'success'){
-            list=response;
+            list = response;
         }
     });
     
@@ -130,19 +130,24 @@ $( document ).ready(function() {
     			
     			for (flight of response) {
     				
+    				// Minutes outbound flight
     				var minutes = flight.minutes;
     				if (minutes < 10) minutes = "0" + minutes;
     				
+    				//Arrival time for the flight
     				var hours_return = flight.hour + Math.floor(flight.flightTime / 60);
     				var minutes_return = flight.minutes + (flight.flightTime % 60);
     				
+    				// If minutes are greater than 60 reduce the minutes and add an hour
     				while (minutes_return >= 60) {
     					minutes_return -= 60;
     					hours_return++;
     				}
     				
+    				// If minutes are greater than 60 reduce the minutes and add an hour
     				if (minutes_return < 10) minutes_return = "0" + minutes_return;
     				
+    				// Add html code dinamically
     				div_parent.append(
     					["<hr>",
             			 "<div class='row d-sm-flex justify-content-between m-4 border-bottom'>",
@@ -224,6 +229,7 @@ $( document ).ready(function() {
     				if (response[i].company === response[i + 1].company) 
     					total = "<div class='text-danger go_search'><del>" + total + "€ </del></div>" + (total * 0.8);
     				
+    				// Add html code dinamically
     				div_parent.append(
             				["<hr>",
             				"<div class='row d-sm-flex justify-content-between m-4 border-bottom'>",
@@ -400,8 +406,8 @@ $( document ).ready(function() {
 		autoOpen: false,
 		modal: true,
 		resizable: false,
-		height: 500,
-		width: 500,
+		height: 425,
+		width: 450,
 	    buttons: {
 	    	Ok: function() {
 	    		$( this ).dialog( "close" );
@@ -422,6 +428,7 @@ $( document ).ready(function() {
 		var company = $(this).data('value');
 		var url = '/get_company?code=' + company;
 		$.getJSON(url, function(response) {
+			$('#name_company').text(response.name);
 			$('#code_iata').text(response.code);
 			$('#page').text(response.linkPage);
 			$('#phone').text(response.phone);

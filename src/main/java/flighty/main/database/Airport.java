@@ -16,6 +16,7 @@ public class Airport {
 	private String name; // Name of the city where the city is located and if there are several airports the name of the airport
 	
 	public Airport() {}
+	
 	public Airport(String code, String name) {
 		super();
 		this.code = code;

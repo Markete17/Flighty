@@ -17,6 +17,10 @@ public class CompanyController {
 	@Autowired
 	private CompanyService companyService;
 	
+	/**
+	 * @param code (code of the company)
+	 * @return company
+	 */
 	@GetMapping("/get_company")
 	public ResponseEntity<Company> getCompany(@RequestParam String code) {
 		Company company = companyService.findCompany(code);

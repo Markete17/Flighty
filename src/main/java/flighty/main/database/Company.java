@@ -16,9 +16,10 @@ public class Company {
 	private String name; // Name of the company
 	private String linkPage; // Link to the official web site of the company
 	private String phone; // Customer support Phone
-	private double rating; //Global rating of the users (value: 1-5)
+	private double rating; // Global rating of the users (value: 1-5)
 	
 	public Company() {}
+	
 	public Company(String code, String name, String linkPage, String phone, double rating) {
 		super();
 		this.code = code;
@@ -68,6 +69,4 @@ public class Company {
 		this.rating = rating;
 	}
 	
-	
-
 }
