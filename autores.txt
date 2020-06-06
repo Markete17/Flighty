@@ -1,0 +1,18 @@
+Nombre    |    Apellidos    |    DNI    |
+----------------------------------------|
+Jose Luis |  Sierra Benito  | 06005586X | 
+Marcos    |  Ruiz Muñoz     | 53904671P |
+----------------------------------------|
+
+Autor 1: Marcos Ruiz Muñoz - 53904671P
+-Ha inicializado la base de datos y ejemplos con Post Construct
+-Añadido autocompletar JQuery con servicio REST 
+-Añadido la búsqueda de vuelos en JSON
+-Ha trabajado el index.html y index.js
+-Ha añadido Controllers y Services usables para peticiones Javascript
+Autor 2: Jose Luis Sierra Benito - 06005586X
+-Ha modificado la base de datos mejorando y corrigiendo errores.
+-Ha añadido frontend de la lista de vuelos.
+-Ha trabajado el index.js y index.html
+-Ha realizado dialog en custom.js
+-Ha añadido controllers y Services
